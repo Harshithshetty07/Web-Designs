@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SingUp and SingIn Form</title>
+
+<!--Css styling link-->
+<link rel="stylesheet">
+
+<!--Font awesome Link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+
+</head>
+<style>
+    
+* {
+
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-decoration: none;
+list-style: none;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+'Lucida Sans', Arial, sans-serif;
+border: none;
+outline: none;
+letter-spacing: .4px;
+}
+
+:root{
+--color-white: #fff;
+--color-black: #040507;
+--color-light: rgba(225,225,225, 0.5);
+
+--transition: .4s ease;
+}
+.container {
+
+width: 90%;
+max-width: 1620px;
+margin: 0 auto;
+}
+.btn {
+width: 130px;
+height: 50px;
+background: transparent;
+border: 2px solid var(--color-white);
+border-radius: 6px;
+cursor: pointer;
+font-weight: 500;
+color: var(--color-white);
+font-size: 1.2rem;
+transition: var(--transition)
+
+}
+.btn:hover {
+background: var(--color-white);
+color: var(--color-black);
+}
+
+/* start Header */
+
+header{
+height: 100vh;
+width: 100%;
+background: url(rTLxwuJ81ka6wM8_1688476060.png) 
+no-repeat center center/cover;
+}
+
+nav{
+display: flex;
+align-items: center;
+height: 5rem;
+position: fixed;
+width: 100%;
+left: 0;
+}
+.nav-container{
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+.logo{
+ font-size: 2.2rem;
+ color: var(--color-white);
+}
+.nav-links{
+display: flex;
+align-items: center;
+gap: 40px;
+}
+.nav-links li a{
+color: var(--color-white);
+font-size: 1.2rem;
+font-weight: 500;
+position: relative;
+}
+.nav-links li a::after{
+content: '';
+height: 3px;
+width: 100%;
+position: absolute;
+background: var(--color-white);
+left: 0;
+bottom: -6px;
+border-radius: 6px;
+transform: scalex(0);
+transition: var(--transition);
+transform-origin: right;
+}
+.nav-links li a:hover::after{
+transform: scalex(1);
+transform-origin: left;
+}
+
+/* SignIn and SignUp */
+
+.signup-signin {
+
+width: fit-content;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%) scale(0);
+transition: var(--transition);
+
+}
+.signup-signin-wrapper{
+position: relative;
+width: 400px;
+height: 440px;
+border: 2px solid var(--color-light);
+border-radius: 20px;
+backdrop-filter: blur(20px);
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 0 30px rgba(0,0,0, 0.5);
+overflow: hidden;
+transition: var(--transition);
+
+}
+.signup-active{
+height: 520px;
+}
+.signin{
+transition: var(--transition);
+}
+.signup-active .signin{
+ position: absolute;
+ transform: translateX(-400px);
+}
+.signup{
+position: absolute;
+transform: translateX(400px);
+}
+.signup-active .signup{
+transform: translateX(0);
+transition: var(--transition);
+}
+.form-box{
+width: 100%;
+padding: 40px;
+}
+.form-box h2{
+font-size: 2.4rem;
+color: var(--color-black);
+text-align: center;
+}
+.input-box{
+position: relative;
+width: 100%;
+height: 50px;
+border-bottom: 2px solid orangered;
+margin: 30px 0;
+}
+.input-box label{
+position: absolute;
+top: 50%;
+left: 5px;
+transform: translateY(-50%);
+pointer-events: none;
+font-size: 1rem;
+color: var(--color-black);
+font-weight: 500;
+transition: var(--transition);
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+top: -5px;
+}
+.input-box input {
+height: 100%;
+width: 100%;
+background: transparent;
+font-size: 1rem;
+color: white;
+font-weight: 600;
+padding: 0 35px 0 5px;
+}
+.input-box span{
+position: absolute;
+right: 8px;
+line-height: 57px;
+font-size: 1.2rem;
+color: var(--color-black);
+
+}
+.remember-forgot label{
+display: flex;
+gap: 3px;
+font-size: .9rem;
+color: black;
+align-items: center;
+margin: 15px 0 15px;
+}
+
+.remember-forgot a{
+margin-left: 5px;
+}
+.remember-forgot a{
+color: rgb(13, 214, 214);
+border-bottom: 2px solid transparent;
+transition: var(--transition);
+}
+.remember-forgot a:hover{
+border-color: black;
+}
+.form-box button{
+width: 100%;
+background: black;
+height: 45px;
+border: transparent;
+}
+.signin-register{
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--color-black);
+font-weight: 500;
+margin: 25px 0 10px;
+gap: 5px;
+font-weight: 500;
+font-size: 1rem;
+}
+.signin-register a{
+color: var(--color-black);
+font-weight: 600;
+border-bottom: 2px solid transparent;
+transition: var(--transition);
+
+}
+.signin-register a:hover{
+border-color: var(--color-black);
+}
+.close{
+position: absolute;
+top: 0;
+right: 0;
+height: 45px;
+width: 45px;
+background: var(--color-black);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--color-white);
+cursor: pointer;
+border-bottom-left-radius: 20px;
+border-top-right-radius: 20px ;
+
+
+}
+
+</style>
+<body>
+
+<header>
+
+<nav>
+    <div class="container nav-container">
+     <a href="" class="logo"><h3>Lo<span>go</span></h3></a>
+
+     <ul class="nav-links">
+        <li><a href="">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Contact</a></li>
+     </ul>
+<button class="btn signin-button">SignIn</button>
+
+    </div>
+</nav>
+
+</header>
+
+<!-- SignIn and SignUp Form-->
+
+<div class="signup-signin">
+    <div class="signup-signin-wrapper">
+
+        <span class="close"><i class="fa fa-close"></i></span>
+
+        <div class="form-box signin">
+            <h2>SIGN IN</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span><i class="fa fa-message"></i></span>
+                    <input type="email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span><i class="fa fa-lock"></i></span>
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label for=""><input type="checkbox">Remember This <a href="">Forget password ?</a> </label>
+                </div>
+                <button type="submit" class="btn">SignIn</button>
+                <div class="signin-register">
+                <p>Don't have an account ?</p>
+                <a class="signup-link">signup</a>
+                </div>
+            </form>
+
+        </div>
+
+        <!-- ......Sign UP aria.......-->
+
+        <div class="form-box signup">
+            <h2>SIGN UP</h2>
+            <form action="#" >
+                <div class="input-box">
+                    <span><i class="fa fa-user"></i></span>
+                    <input type="text" required>
+                    <label for="">User Name</label>
+                </div>
+                <div class="input-box">
+                    <span><i class="fa fa-message"></i></span>
+                    <input type="email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span><i class="fa fa-lock"></i></span>
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label for=""><input type="checkbox">Accept the <a href="">Terms and Conditions</a> </label>
+                </div>
+                <button type="submit" class="btn">SignUp</button>
+                <div class="signin-register">
+                <p>Already have an account?</p>
+                <a class="signin-link">signin</a>
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    let signupSignin = document.querySelector('.signup-signin');
+let signupSigninWrapper = document.querySelector('.signup-signin-wrapper');
+let signinlink = document.querySelector('.signin-link');
+let signuplink = document.querySelector('.signup-link');
+let signinButton = document.querySelector('.signin-button');
+let signinsignupFormcloser = document.querySelector('.close');
+
+
+signuplink.addEventListener('click',()=> {
+    signupSigninWrapper.classList.add('signup-active');
+
+});
+
+signinlink.addEventListener('click',()=> {
+    signupSigninWrapper.classList.remove('signup-active');
+});
+
+signinButton.addEventListener('click',()=> {
+    signupSignin.style.transform = 'translate(-50%,-50%) scale(1)';
+});
+
+signinsignupFormcloser.addEventListener('click',()=> {
+    signupSignin.style.transform = 'translate(-50%,-50%) scale(0)';
+});
+
+
+</script>
+
+</body>
+</html>
+

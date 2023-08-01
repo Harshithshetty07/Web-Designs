@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Style sheet -->
+<link rel="stylesheet" >
+<!-- Global font links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<!-- FontAwesome Link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title> Stop Watch pro</title>
+ </head>
+<style>
+    /*  Stop Watch styling */
+
+
+body {
+    height: 100vh;
+    background: url(412d528fb24fd92dbce0cafcf022cbdc.jpg) no-repeat center center/ cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.container {
+    width: 40%;
+    height: 250px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 3px;
+}
+
+#timer {
+    width: 100%;
+    font-size: 72px;
+    text-align: center;
+    margin: 0px auto;
+    padding: 35px;
+}
+
+.buttons {
+    text-align: center;
+    
+}
+
+button {
+    margin: 0 10px;
+    border: none;
+}
+
+button i {
+    font-size: 2rem;
+    padding: 10px;
+    color: white;
+    width: 50px;
+}
+
+#play {
+    background-color: green;
+}
+
+#pause{
+    background-color: orange;
+}
+#reset {
+    background-color: red;
+} 
+
+
+
+</style>
+<body>
+
+<div class="container">
+
+    <div id="timer">
+        00:00:00
+    </div> 
+
+    <div class="buttons">
+        <button id="startStopBtn">
+            <i class="fa-solid fa-play" id="play"></i>
+        </button>
+
+        <button id="resetBtn">
+            <i class="fa-solid fa-arrow-rotate-left" id="reset"> </i>
+        </button> 
+    </div>
+</div>
+
+<script>
+    // Variables for Button
+
+const startStopBtn = document.querySelector('#startStopBtn');
+const resetBtn = document.querySelector('#resetBtn');
+
+// Variables for time values
+
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+// Variables for leading zero
+
+let leadingSeconds = 0;
+let leadingMinutes = 0;
+let leadingHours = 0;
+
+
+// Variables for set interval and timestatus
+
+let timerInterval = null;
+let timerStatus = "stopped";
+
+// Stop watch function
+
+
+function stopWatch() {
+
+    seconds++
+
+    if(seconds / 60 === 1){
+        seconds = 0;
+        minutes ++;
+
+        if(minutes / 60 ===1) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    
+        if(seconds < 10) {
+            leadingSeconds = "0" + seconds.toString();
+        }else {
+            leadingSeconds = seconds;
+        }
+
+        if(minutes < 10) {
+            leadingMinutes = "0" + minutes.toString();
+        }else {
+            leadingMinutes = minutes;
+        }
+
+        if(hours < 10) {
+            leadingHours = "0" + hours.toString();
+        } else{
+            leadingHours = hours;
+        }
+    
+
+
+    let displayTimer = document.getElementById('timer').innerText = leadingHours + ":" +leadingMinutes + ":" +leadingSeconds;
+
+}
+
+
+startStopBtn.addEventListener("click", function() {
+
+    if(timerStatus === "stopped") {
+        timerInterval = window.setInterval(stopWatch, 100);
+        document.getElementById('startStopBtn').innerHTML = `<i class="fa-solid fa-pause" id="pause"></i>`;
+        timerStatus = "started";
+    } else {
+        window.clearInterval(timerInterval);
+        document.getElementById('startStopBtn').innerHTML = `<i class="fa-solid fa-play" id="play"></i>`;
+        timerStatus = "stopped";
+
+    }
+
+} );
+
+resetBtn.addEventListener('click', function() {
+
+window.clearInterval(timerInterval);
+seconds = 0;
+minutes = 0;
+hours = 0;
+
+document.getElementById('timer').innerHTML = "00:00:00";
+
+});
+</script>
+</body>
+</html>

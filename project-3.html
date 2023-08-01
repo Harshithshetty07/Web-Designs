@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Style sheet -->
+<link rel="stylesheet">
+<!-- Global font links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<!-- FontAwesome Link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title> Accordion</title>
+ </head>
+ <style>
+    /* Accordion styles */
+
+body {
+    background: url(AdobeStock_320715811_Preview.jpeg) no-repeat center center/cover;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    margin-left: 20px;
+}
+
+.accordion {
+    width: 55%;
+    background-color: orange;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+
+.accordion .accordion-title {
+    margin-bottom: 30ppx;
+text-align: center;
+}
+
+/*.accordion .content-container */.question {
+    padding: 18px 0px;
+    font-size: 22px;
+cursor: pointer;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+ /*.accordion .content-container*/ .question::after {
+    content:'+';
+    position: absolute;
+    right: -5px;
+}
+
+/*.accordion .content-container*/ .answer {
+    padding-top: 15px;
+    font-size: 22px;
+    line-height: 1.5;
+    width: 100%;
+
+    height: 0px;
+    overflow: hidden;
+    transition: .5s;
+}
+/* javascript styling link */
+
+/*.accordion .content-container*/.active .answer {
+    height: 150px;
+}
+
+/*.accordion .content-container*/.active .question {
+    font-size: 18px;
+    transition: .5s;
+}
+.accordion .content-container.active .question::after {
+    content:'-';
+    font-size: 30px;
+    transition: .5s;
+}
+
+
+
+ </style>
+<body>
+
+<!-- Project 3 accordion-->
+
+<div class="accordion">
+    <h2 class="accordion-title">Frequently Asked Questions</h2>
+
+<div class="content-container">
+    <div class="question">Where are objects used in JavaScript?</div>
+    <div class="answer"> Objects in JavaScript are collections of key/value pairs. 
+        The values can consist of properties and methods, and may contain all other 
+        JavaScript data types, such as strings, numbers, and Booleans. All objects in
+         JavaScript descend from the parent Object constructor.</div>
+</div>
+<div class="content-container">
+    <div class="question">What is the purpose of a for loop?  </div>
+    <div class="answer">A "For" Loop is used to repeat a specific block of
+         code a known number of times. For example, if we want to check the 
+         grade of every student in the class, we loop from 1 to that number. 
+         When the number of times is not known before hand, we use a "While" loop.</div>
+</div>
+<div class="content-container">
+    <div class="question">When should I use for in loop JavaScript?   </div>
+    <div class="answer">For…in loops are useful when you want to iterate 
+        over properties in an object. You should use a for…of loop if 
+        But if you want to iterate over items in an object. As you can see,
+         our for…of loop has iterated through every item in the students array. 
+         Each item is printed to the console</div>
+</div>
+</div>
+<script>
+    // Variables
+
+const accordion = document.getElementsByClassName("content-container");
+
+for( i = 0; i < accordion.length; i++) {
+    accordion[i].addEventListener('click', function() {
+        this.classList.toggle('active');
+    })
+};
+
+</script>
+
+</body>
+</html>
